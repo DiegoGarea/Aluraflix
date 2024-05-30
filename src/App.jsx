@@ -4,7 +4,7 @@ import {Home, UploadForm} from './pages';
 
 const App = () => {
   return (
-    <>
+    <div className="max-w-7xl mx-auto">
       <BrowserRouter>
         <div>
           <Header />
@@ -15,7 +15,7 @@ const App = () => {
         </Routes>
         <Footer />
       </BrowserRouter>
-    </>
+    </div>
   );
 };
 
