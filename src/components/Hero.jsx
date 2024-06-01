@@ -1,17 +1,28 @@
-const Hero = () => {
+const Hero = ({id, title, category, image, video, description}) => {
   return (
-    <div className="flex justify-center items-center bg-black h-[400px] max-w-7xl">
+    <div className="flex justify-center items-center max-w-7xl bg-cover bg-no-repeat bg-center bg-hero-pattern p-6">
       <div className="leading-7 text-white max-w-[48%]">
-        <h2 className="bg-blue-300 max-w-56 text-center font-bold text-3xl mb-5 rounded-md py-3 uppercase">
-          Front End
+        <h2
+          className={`${
+            category === 'walkthrough'
+              ? 'bg-blue-300'
+              : category === 'game review'
+              ? 'bg-green-500'
+              : category === 'game ost'
+              ? 'bg-yellow-500'
+              : ''
+          } ' bg-blue-300' max-w-56 text-center font-bold text-3xl mb-5 rounded-md py-3 uppercase`}
+        >
+          {category}
         </h2>
-        <h3 className="font-bold text-2xl mb-2 uppercase">TITULO</h3>
-        <p className="max-w-[80%] text-sm ">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis vel
-          natus voluptate quos quae. Quidem porro sequi deleniti obcaecati
-        </p>
+        <h3 className="font-bold text-2xl mb-2 uppercase">{title}</h3>
+        <p className="max-w-[80%] text-sm ">{description}</p>
       </div>
-      <div className="w-[48%] h-[50%] bg-blue-300">video random</div>
+      <div className="w-[48%] h-[40%] ">
+        <a href={video} target="_blank">
+          <img src={image} alt={title} className="object-contain" />
+        </a>
+      </div>
     </div>
   );
 };

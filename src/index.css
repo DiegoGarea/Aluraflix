@@ -9,6 +9,6 @@
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  background-color: rgb(38, 38, 38);
+  color-scheme: dark;
   font-family: 'Roboto', sans-serif;
 }
