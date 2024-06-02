@@ -25,9 +25,11 @@ const Home = () => {
           </h2>
         </div>
         <div className="w-full grid grid-cols-3 gap-2 max-lg:grid-cols-2 max-md:grid-cols-1">
-          {videos.map((video) => (
-            <VideoCard key={video.id} {...video} />
-          ))}
+          {videos
+            .filter((video) => video.category === 'walkthrough')
+            .map((video) => (
+              <VideoCard key={video.id} {...video} />
+            ))}
         </div>
       </section>
       <section className="px-5 mb-12">
@@ -37,7 +39,11 @@ const Home = () => {
           </h2>
         </div>
         <div className="w-full grid grid-cols-3 gap-2 max-lg:grid-cols-2 max-md:grid-cols-1">
-          <VideoCard />
+          {videos
+            .filter((video) => video.category === 'game review')
+            .map((video) => (
+              <VideoCard key={video.id} {...video} />
+            ))}
         </div>
       </section>
       <section className="px-5 mb-12">
@@ -47,7 +53,11 @@ const Home = () => {
           </h2>
         </div>
         <div className="w-full grid grid-cols-3 gap-2 max-lg:grid-cols-2 max-md:grid-cols-1">
-          <VideoCard />
+          {videos
+            .filter((video) => video.category === 'game ost')
+            .map((video) => (
+              <VideoCard key={video.id} {...video} />
+            ))}
         </div>
       </section>
     </section>

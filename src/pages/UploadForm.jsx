@@ -1,19 +1,9 @@
-import {useState} from 'react';
-import {v4} from 'uuid';
+import {useContext} from 'react';
 
+import {AluraflixContext} from '../context/AluraflixContext';
 const UploadForm = () => {
-  const [form, setForm] = useState({
-    id: v4(),
-    title: '',
-    category: '',
-    image: '',
-    video: '',
-    description: '',
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+  const {handleSubmit, form, setForm, handleReset} =
+    useContext(AluraflixContext);
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -23,8 +13,6 @@ const UploadForm = () => {
       [name]: value,
     });
   };
-
-  console.log(form);
 
   return (
     <section className="text-white ">
@@ -38,7 +26,7 @@ const UploadForm = () => {
         <h2 className="mb-8 border-t-2 border-b-2 border-gray-700 p-4 text-xl">
           Crear Tarjeta
         </h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="flex w-full mb-8">
             <div className="flex flex-col w-[40%] mr-5">
               <label htmlFor="title">Título:</label>
@@ -67,9 +55,9 @@ const UploadForm = () => {
               />
             </div>
             <datalist id="categories">
-              <option value="React" />
-              <option value="Vue" />
-              <option value="Angular" />
+              <option value="walkthrough" />
+              <option value="game review" />
+              <option value="game ost" />
             </datalist>
           </div>
           <div className="flex w-full mb-8">
@@ -115,11 +103,18 @@ const UploadForm = () => {
               required
             ></textarea>
           </div>
+
           <button
-            className="border-2 border-[#2271D1] py-2 px-6 rounded-md mb-8"
+            className="border-2 border-[#2271D1] py-2 px-6 rounded-md mb-8 mr-5 uppercase"
             type="submit"
           >
             Guardar
+          </button>
+          <button
+            className="border-2 border-white py-2 px-6 rounded-md mb-8 uppercase"
+            onClick={handleReset}
+          >
+            Limpiar
           </button>
         </form>
       </div>
