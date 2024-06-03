@@ -4,7 +4,7 @@ import {useContext} from 'react';
 import {AluraflixContext} from '../context/AluraflixContext';
 
 const VideoCard = ({id, title, category, image, video, description}) => {
-  const {handleDelete} = useContext(AluraflixContext);
+  const {handleDelete, active, setActive} = useContext(AluraflixContext);
 
   return (
     <div className="flex flex-col border-2 border-[#2271D1] rounded-md shadow-inner-blue-custom w-[400px] h-[300px]">
@@ -19,7 +19,10 @@ const VideoCard = ({id, title, category, image, video, description}) => {
           {' '}
           <img src={trash} alt="trash" className="mr-4" /> Borrar
         </button>
-        <button className="flex items-center uppercase">
+        <button
+          className="flex items-center uppercase"
+          onClick={() => setActive(!active)}
+        >
           {' '}
           <img src={edit} alt="edit" className="mr-4" /> Editar
         </button>

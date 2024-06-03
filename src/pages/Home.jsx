@@ -1,4 +1,4 @@
-import {Hero, VideoCard} from '../components';
+import {Hero, VideoCard, EditCard} from '../components';
 import {useContext, useEffect, useState} from 'react';
 import {AluraflixContext} from '../context/AluraflixContext';
 
@@ -60,6 +60,7 @@ const Home = () => {
             ))}
         </div>
       </section>
+      <EditCard />
     </section>
   );
 };

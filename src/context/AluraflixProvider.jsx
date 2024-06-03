@@ -5,6 +5,7 @@ import {useNavigate} from 'react-router-dom';
 
 const AluraflixProvider = ({children}) => {
   const [videos, setVideos] = useState([]);
+  const [active, setActive] = useState(false);
   const [form, setForm] = useState({
     id: v4(),
     title: '',
@@ -40,6 +41,15 @@ const AluraflixProvider = ({children}) => {
     }
   };
 
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
+
   const handleDelete = async (id) => {
     try {
       await fetch(`http://localhost:3500/aluraflix/${id}`, {
@@ -51,7 +61,7 @@ const AluraflixProvider = ({children}) => {
     }
   };
 
-  // handlePatch = async (id) => {
+  // const handlePatch = async (id) => {
   //   try {
   //     await fetch(`http://localhost:3500/aluraflix/${id}`, {
   //       method: 'PATCH',
@@ -88,11 +98,14 @@ const AluraflixProvider = ({children}) => {
       value={{
         videos,
         getVideos,
-        handleSubmit,
         form,
         setForm,
+        active,
+        setActive,
+        handleSubmit,
         handleDelete,
         handleReset,
+        handleChange,
       }}
     >
       {children}

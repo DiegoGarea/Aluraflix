@@ -2,17 +2,8 @@ import {useContext} from 'react';
 
 import {AluraflixContext} from '../context/AluraflixContext';
 const UploadForm = () => {
-  const {handleSubmit, form, setForm, handleReset} =
+  const {handleSubmit, form, handleReset, handleChange} =
     useContext(AluraflixContext);
-
-  const handleChange = (e) => {
-    const {name, value} = e.target;
-
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  };
 
   return (
     <section className="text-white ">
