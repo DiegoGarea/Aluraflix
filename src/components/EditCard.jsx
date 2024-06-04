@@ -3,7 +3,7 @@ import {AluraflixContext} from '../context/AluraflixContext';
 import close from '../assets/close.svg';
 
 const EditCard = () => {
-  const {handleSubmit, form, handleChange, handleReset, active, setActive} =
+  const {form, handleChange, active, handlePatch, handleReset, closeEdit} =
     useContext(AluraflixContext);
 
   return (
@@ -12,21 +12,23 @@ const EditCard = () => {
         !active ? 'hidden' : 'inset-0'
       } fixed  flex justify-center items-center bg-blue-700 bg-opacity-30`}
     >
-      <div className="bg-blue-950 min-w-[600px] h-5/6 opacity-100 py-8 px-20 rounded-xl border-2 border-blue-500">
+      <div className="bg-blue-950 min-w-[600px] h-5/6 max-sm:h-auto max-sm:min-w-[350px] max-sm:p-1.5 opacity-100 py-8 px-20 rounded-xl border-2 border-blue-500">
         <div className="flex justify-end cursor-pointer rounded-full">
           <img
             src={close}
             alt="close"
             width={24}
             height={24}
-            onClick={() => setActive(!active)}
+            onClick={() => closeEdit()}
           />
         </div>
-        <div className="flex flex-col justify-center items-center mb-8">
-          <h2 className="text-4xl font-bold mb-4 mt-4">EDITAR VIDEO</h2>
+        <div className="flex flex-col justify-center items-center mb-8 max-sm:mb-0">
+          <h2 className="text-4xl font-bold mb-4 mt-4 max-sm:text-xl">
+            EDITAR VIDEO
+          </h2>
         </div>
         <div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={() => handlePatch(form.id)}>
             <div className="flex flex-col">
               <label htmlFor="title">Título:</label>
               <input
@@ -86,7 +88,7 @@ const EditCard = () => {
                 required
               />
             </div>
-            <div className="flex flex-col mb-8">
+            <div className="flex flex-col mb-8 max-sm:mb-4">
               <label htmlFor="description">Descripción:</label>
               <textarea
                 id="description"
@@ -95,7 +97,7 @@ const EditCard = () => {
                 onChange={handleChange}
                 rows="7"
                 placeholder="Descripción del video"
-                className="border-2 border-blue-500 rounded-md p-2 bg-blue-950 mb-4"
+                className="border-2 border-blue-500 rounded-md p-2 bg-blue-950 mb-4 max-sm:h-[100px] max-sm:mb-0"
                 required
               ></textarea>
             </div>

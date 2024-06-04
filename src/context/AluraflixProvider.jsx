@@ -48,6 +48,7 @@ const AluraflixProvider = ({children}) => {
       ...form,
       [name]: value,
     });
+    console.log(form);
   };
 
   const handleDelete = async (id) => {
@@ -61,22 +62,27 @@ const AluraflixProvider = ({children}) => {
     }
   };
 
-  // const handlePatch = async (id) => {
-  //   try {
-  //     await fetch(`http://localhost:3500/aluraflix/${id}`, {
-  //       method: 'PATCH',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(form),
-  //     });
-  //     navigate('/');
-  //     handleReset();
-  //     getVideos();
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  const handlePatch = async (id) => {
+    try {
+      await fetch(`http://localhost:3500/aluraflix/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      });
+      setActive(false);
+      handleReset();
+      getVideos();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleEdit = (id) => {
+    const video = videos.find((video) => video.id === id);
+    setForm(video);
+  };
 
   const handleReset = () => {
     setForm({
@@ -87,6 +93,16 @@ const AluraflixProvider = ({children}) => {
       video: '',
       description: '',
     });
+  };
+
+  const editButton = (id) => {
+    handleEdit(id);
+    setActive(!active);
+  };
+
+  const closeEdit = () => {
+    setActive(!active);
+    handleReset();
   };
 
   useEffect(() => {
@@ -106,6 +122,9 @@ const AluraflixProvider = ({children}) => {
         handleDelete,
         handleReset,
         handleChange,
+        handlePatch,
+        editButton,
+        closeEdit,
       }}
     >
       {children}

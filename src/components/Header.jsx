@@ -3,7 +3,7 @@ import Aluraflix from '../assets/Aluraflix.png';
 
 const Header = () => {
   return (
-    <nav className="flex justify-between items-center  py-6 p-4 border-b-2 border-[#2271D1]">
+    <nav className="flex justify-between items-center  py-6 p-4 border-b-2 border-[#2271D1] max-sm:hidden">
       <div>
         <img src={Aluraflix} alt="Aluraflix" width={120} />
       </div>
